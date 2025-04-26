@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: worldcup
+  datasource:
+    url: jdbc:postgresql://localhost:5432/worldcup
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        default_schema: project
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        ddl-auto: none
+    open-in-view: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    table: project_schema_version
+    baseline-version: 0
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

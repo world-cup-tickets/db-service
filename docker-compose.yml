@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:13.2-alpine
+    container_name: worldcup-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: worldcup
+    volumes:
+      - worldcup-db-vol:/var/lib/postgresql/data
+
+volumes:
+  worldcup-db-vol:
