@@ -1,5 +1,7 @@
 package com.worldcup.dbservice.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateTicketDto {
-    private LocalDateTime reservationDate;
-    private UUID userId;
-    private UUID matchId;
+    @JsonProperty("reservation_date") private LocalDateTime reservationDate;
+    @JsonProperty("user_id") private UUID userId;
+    @JsonProperty("match_id") private UUID matchId;
 }
