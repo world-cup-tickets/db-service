@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Ticket {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private UUID id;
 
     @Column(name = "reservation_date", nullable = false)
