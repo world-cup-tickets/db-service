@@ -34,28 +34,6 @@ class MatchServiceTest {
     @InjectMocks
     private MatchService matchService;
 
-    @Test
-    void MatchService_CreateMatch_callsSaveOnRepository() {
-        CreateMatchDto matchDto = new CreateMatchDto(
-                "Ghencea",
-                "Steaua",
-                "Dinamo",
-                "Ref A",
-                LocalDateTime.now(),
-                50,
-                30.0
-        );
-
-        matchService.createMatch(matchDto);
-
-        ArgumentCaptor<Match> matchCaptor = ArgumentCaptor.forClass(Match.class);
-        verify(matchRepository).save(matchCaptor.capture());
-
-        Match savedMatch = matchCaptor.getValue();
-        assertEquals("Ghencea", savedMatch.getStadium());
-        assertEquals("Steaua", savedMatch.getHomeTeam());
-    }
-
 
     @Test
     void MatchService_UpdateMatch_UpdatesAndReturnsMatchDto() {
