@@ -20,9 +20,12 @@ public class MatchController {
     @Autowired
     private MatchService matchService;
 
+    Logger logger = LoggerFactory.getLogger(MatchController.class);
+
     @PostMapping("/create")
     public ResponseEntity<MatchDto> createMatch(@RequestBody CreateMatchDto dto) {
         MatchDto matchDto = matchService.createMatch(dto);
+        logger.info("Match created successfully!");
         return ResponseEntity.ok(matchDto);
     }
 
