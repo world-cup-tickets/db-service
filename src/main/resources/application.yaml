@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: worldcup
+    name: db-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/worldcup
-    username: postgres
-    password: postgres
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     properties:
       hibernate:
@@ -25,3 +25,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info
+  endpoint:
+    prometheus:
+      enabled: true
+
