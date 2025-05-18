@@ -18,11 +18,12 @@ public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
 
-    public void createMatch(CreateMatchDto dto) {
+    public MatchDto createMatch(CreateMatchDto dto) {
         Match match = new Match();
         mapToEntity(dto, match);
+        Match savedMatch = matchRepository.save(match);
 
-        matchRepository.save(match);
+        return mapToDto(savedMatch);
     }
 
     private void mapToEntity(CreateMatchDto dto, Match match) {
@@ -34,6 +35,20 @@ public class MatchService {
         match.setNrSeats(dto.getNrSeats());
         match.setSeatPrice(dto.getSeatPrice());
     }
+
+    private MatchDto mapToDto(Match match) {
+        return MatchDto.builder()
+                .id(match.getId())
+                .stadium(match.getStadium())
+                .homeTeam(match.getHomeTeam())
+                .awayTeam(match.getAwayTeam())
+                .referee(match.getReferee())
+                .dateTime(match.getMatch_date())
+                .nrSeats(match.getNrSeats())
+                .seatPrice(match.getSeatPrice())
+                .build();
+    }
+
 
     public MatchDto update(UUID id, CreateMatchDto dto) {
         Match match = matchRepository.findById(id)

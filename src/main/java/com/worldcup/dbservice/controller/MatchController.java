@@ -4,6 +4,8 @@ import com.worldcup.dbservice.entity.Match;
 import com.worldcup.dbservice.service.MatchService;
 import com.worldcup.dbservice.service.dto.CreateMatchDto;
 import com.worldcup.dbservice.service.dto.MatchDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +19,11 @@ import java.util.UUID;
 public class MatchController {
     @Autowired
     private MatchService matchService;
+
     @PostMapping("/create")
-    public ResponseEntity<?> createMatch(@RequestBody CreateMatchDto dto) {
-        matchService.createMatch(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Match created successfully.");
+    public ResponseEntity<MatchDto> createMatch(@RequestBody CreateMatchDto dto) {
+        MatchDto matchDto = matchService.createMatch(dto);
+        return ResponseEntity.ok(matchDto);
     }
 
     @GetMapping("/getAllMatches")

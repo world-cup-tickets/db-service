@@ -13,6 +13,7 @@ services:
     networks:
       - monitoring
       - logging
+      - worldcup-net
 
   prometheus:
     image: prom/prometheus:latest
@@ -25,6 +26,7 @@ services:
       - db-service
     networks:
       - monitoring
+      - worldcup-net
 
   db-service:
     image: db-service
@@ -43,6 +45,7 @@ services:
     networks:
       - monitoring
       - logging
+      - worldcup-net
 
   loki:
     image: grafana/loki:2.9.4
@@ -55,6 +58,7 @@ services:
     command: -config.file=/etc/loki/loki.yml
     networks:
       - logging
+      - worldcup-net
 
   grafana:
     image: grafana/grafana:latest
@@ -68,6 +72,7 @@ services:
     networks:
       - monitoring
       - logging
+      - worldcup-net
 
 volumes:
   worldcup-db-vol:
@@ -76,3 +81,5 @@ volumes:
 networks:
   monitoring:
   logging:
+  worldcup-net:
+    external: true
