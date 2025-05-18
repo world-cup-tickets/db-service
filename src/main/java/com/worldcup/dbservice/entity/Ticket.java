@@ -23,7 +23,7 @@ public class Ticket {
     @Column(name = "reservation_date", nullable = false)
     private LocalDateTime reservationDate;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user", nullable = false)
     private UUID userId;
 
     @ManyToOne
